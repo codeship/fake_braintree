@@ -24,24 +24,28 @@ module FakeBraintree
     $stdout.puts 'Succeded in Initializing Registry'
 
     $stdout.puts '----------------------'
+    $stdout.flush
 
     $stdout.puts 'Start verify all cards'
     self.verify_all_cards = false
     $stdout.puts 'Succeded all cards worked!'
 
     $stdout.puts '----------------------'
+    $stdout.flush
 
     $stdout.puts 'Start clear!'
     clear!
     $stdout.puts 'Succeded all cards worked!'
 
     $stdout.puts '----------------------'
+    $stdout.flush
 
     $stdout.puts 'Start setting conf!'
     set_configuration
     $stdout.puts 'Succeded setting conf!'
 
     $stdout.puts '----------------------'
+    $stdout.flush
 
     $stdout.puts 'Start app server!'
     boot_server(port: options.fetch(:gateway_port, nil))
