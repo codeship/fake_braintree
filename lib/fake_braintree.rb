@@ -17,33 +17,34 @@ module FakeBraintree
   #                          If not given, an ephemeral port will be used.
   #
   def self.activate!(options = {})
-    puts 'Start Initialize Registry'
+    $stdout.puts 'Start Initialize Registry'
     initialize_registry
-    puts 'Succeded in Initializing Registry'
+    $stdout.puts 'Succeded in Initializing Registry'
 
-    puts '----------------------'
+    $stdout.puts '----------------------'
 
-    puts 'Start verify all cards'
+    $stdout.puts 'Start verify all cards'
     self.verify_all_cards = false
-    puts 'Succeded all cards worked!'
+    $stdout.puts 'Succeded all cards worked!'
 
-    puts '----------------------'
+    $stdout.puts '----------------------'
 
-    puts 'Start clear!'
+    $stdout.puts 'Start clear!'
     clear!
-    puts 'Succeded all cards worked!'
+    $stdout.puts 'Succeded all cards worked!'
 
-    puts '----------------------'
+    $stdout.puts '----------------------'
 
-    puts 'Start setting conf!'
+    $stdout.puts 'Start setting conf!'
     set_configuration
-    puts 'Succeded setting conf!'
+    $stdout.puts 'Succeded setting conf!'
 
-    puts '----------------------'
+    $stdout.puts '----------------------'
 
-    puts 'Start app server!'
+    $stdout.puts 'Start app server!'
     boot_server(port: options.fetch(:gateway_port, nil))
-    puts 'Succeeded starting app server!'
+    $stdout.puts 'Succeeded starting app server!'
+    $stdout.flush
   end
 
   def self.log_file_path
