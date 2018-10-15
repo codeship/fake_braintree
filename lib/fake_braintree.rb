@@ -17,6 +17,8 @@ module FakeBraintree
   #                          If not given, an ephemeral port will be used.
   #
   def self.activate!(options = {})
+    $stdout.puts "Thread info name: #{Thread.current.name}, id: #{Thread.current.__id__}, status: #{Thread.current.status}"
+
     $stdout.puts 'Start Initialize Registry'
     initialize_registry
     $stdout.puts 'Succeded in Initializing Registry'
