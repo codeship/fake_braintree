@@ -114,12 +114,11 @@ module FakeBraintree
   end
 
   def self.boot_server(options = {})
-    $stdout.puts "Instantiate app server with options: #{options}"
     server = Server.new(options)
-    $stdout.puts 'Succesfully instantiated app server!'
     server.boot
     $stdout.puts 'Booted up app server!'
-    $stdout.puts "#{server.port.to_s}"
+    $stdout.puts "Server port: #{server.port.to_s}"
+    $stdout.puts "ENV INFO: #{ENV}"
     ENV['GATEWAY_PORT'] = server.port.to_s
     $stdout.flush
   end
