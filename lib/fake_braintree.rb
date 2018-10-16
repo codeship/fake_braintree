@@ -18,39 +18,12 @@ module FakeBraintree
   #
   def self.activate!(options = {})
     $stdout.puts "Thread info name: #{Thread.current.name}, id: #{Thread.current.__id__}, status: #{Thread.current.status}"
-
-    $stdout.puts 'Start Initialize Registry'
     initialize_registry
-    $stdout.puts 'Succeded in Initializing Registry'
-
-    $stdout.puts '----------------------'
-    $stdout.flush
-
-    $stdout.puts 'Start verify all cards'
     self.verify_all_cards = false
-    $stdout.puts 'Succeded all cards worked!'
-
-    $stdout.puts '----------------------'
-    $stdout.flush
-
-    $stdout.puts 'Start clear!'
     clear!
-    $stdout.puts 'Succeded all cards worked!'
-
-    $stdout.puts '----------------------'
-    $stdout.flush
-
-    $stdout.puts 'Start setting conf!'
     set_configuration
-    $stdout.puts 'Succeded setting conf!'
 
-    $stdout.puts '----------------------'
-    $stdout.flush
-
-    $stdout.puts 'Start app server!'
     boot_server(port: options.fetch(:gateway_port, nil))
-    $stdout.puts 'Succeeded starting app server!'
-    $stdout.flush
   end
 
   def self.log_file_path
@@ -141,9 +114,14 @@ module FakeBraintree
   end
 
   def self.boot_server(options = {})
+    $stdout.puts "Instantiate app server with options: #{options}"
     server = Server.new(options)
+    $stdout.puts 'Succesfully instantiated app server!'
     server.boot
+    $stdout.puts 'Booted up app server!'
+    $stdout.puts "#{server.port.to_s}"
     ENV['GATEWAY_PORT'] = server.port.to_s
+    $stdout.flush
   end
 
   def self.initialize_registry
