@@ -118,7 +118,11 @@ module FakeBraintree
     server.boot
     $stdout.puts 'Booted up app server!'
     $stdout.puts "Server port: #{server.port.to_s}"
-    $stdout.puts "ENV INFO: #{ENV}"
+
+    ENV.to_h.each do |key, value|
+      $stdout.puts "#{key} => #{value}"
+    end
+
     ENV['GATEWAY_PORT'] = server.port.to_s
     $stdout.flush
   end
